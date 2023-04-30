@@ -43,6 +43,15 @@ space = {' ', '\n'}
 punctuation = ''.join(set(text_lower) - cyrillic - space)
 
 
+# быстрый способ — без создания полного списка слов, очищенных от знаков препинания
+words_count = {}
+for word in text_lower.split():
+    word_clean = word.strip(punctuation)
+    # использование словарного метода get()
+    words_count[word_clean] = words_count.get(word_clean, 0) + 1
+
+
+# создание полного списка слов, очищенных от знаков препинания
 # words = []
 # for word in text_lower.split():
     # word_clean = word.strip(punctuation)
@@ -52,17 +61,21 @@ punctuation = ''.join(set(text_lower) - cyrillic - space)
 # то же самое с использованием генераторного выражения
 words = [
     word_clean
+    # использование строкового метода split()
     for word in text_lower.split()
+    # использование строкового метода strip()
     if (word_clean := word.strip(punctuation))
 ]
 
 
+# создание словаря уникальных слов с частотой их использования в исходной строке
 # words_count = {}
 # for word in set(words):
     # words_count[word] = words.count(word)
 
 # то же самое с использованием генераторного выражения
 words_count = {
+    # использование метода последовательностей count()
     word: words.count(word)
     for word in set(words)
 }
@@ -71,6 +84,7 @@ words_count = {
 # сортировка
 # words_count_ord = dict(sorted(
     # words_count.items(), 
+    # использование анонимной функции, возвращающей ключ сортировки
     # key=lambda x: x[1], 
     # reverse=True
 # ))
