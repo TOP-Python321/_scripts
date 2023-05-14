@@ -1,6 +1,6 @@
 def polygon_perimeter(**edges):
     # print(f'{edges}\n{type(edges)}')
-    return 
+    return sum(edges.values())
 
 
 polygon_perimeter(AB=3, BC=4, CA=5)
