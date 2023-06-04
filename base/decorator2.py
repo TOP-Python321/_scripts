@@ -1,6 +1,11 @@
+from functools import wraps
+
+
 def cache(function):
     arg_res = {}
+    @wraps(function)
     def wrapper(num1, num2):
+        """обёртка"""
         # получение доступа на запись к локальному пространству имён функции cache()
         nonlocal arg_res
         res = arg_res.get((num1, num2))
@@ -14,10 +19,12 @@ def cache(function):
 
 @cache
 def adder(num1, num2):
+    """сложение чисел"""
     return num1 + num2
 
 @cache
 def subber(num1, num2):
+    """вычитание чисел"""
     return num1 - num2
 
 @cache
