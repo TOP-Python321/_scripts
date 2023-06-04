@@ -7,11 +7,11 @@ class Test:
     pass
 
 
-repeater_manaul = [Test()]*3
+repeater_manual = [Test()] * 3
 repeater = repeat(Test(), 3)
 
 
-print(*(id(obj) for obj in repeater_manaul), sep='\n', end='\n\n')
+print(*(id(obj) for obj in repeater_manual), sep='\n', end='\n\n')
 print(*(id(obj) for obj in repeater), sep='\n', end='\n\n')
 
 
