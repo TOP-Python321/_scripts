@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!theme monokai from ..\.styles
+
+class Product {
+    {static} -date_format: <i>str</i>
+    +name: <i>str</i>
+    +temperature: <i>float</i>
+    +produced: <i>date</i>
+    +expired: <i>date</i>
+    __init__()
+    __repr__()
+    __str__()
+    __bool__()
+    __eq__()
+}
+
+class Fridge {
+    +refrigerator: <i>list</i>[Product]
+    +freezer: <i>list</i>[Product]
+    +temperature: <i>float</i>
+    __init__()
+    __iter__()
+    __len__()
+    __contains__()
+    +get_expired() -> <i>list</i>[Product]
+    +clear_expired() -> <i>None</i>
+}
+
+Fridge o-left- Product
+
+@enduml
