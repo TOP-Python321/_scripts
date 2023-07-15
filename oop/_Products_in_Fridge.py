@@ -44,6 +44,7 @@ class Product:
 
 class Fridge:
     def __init__(self):
+        # агрегация
         self.refrigerator: list[Product] = []
         self.freezer: list[Product] = []
         self.temperature: float = 20.0
