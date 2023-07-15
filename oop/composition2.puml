@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!theme monokai from ..\.styles
+
+class HRDepartment {
+    +employees: <i>list</i>[Employee]
+    +candidates: <i>list</i>[Candidate]
+    +hire() → Employee
+}
+class Employee {
+    +name: <i>str</i>
+}
+class Candidate {
+    +name: <i>str</i>
+    +email: <i>str</i>
+    #form: Form
+    -interviewer: <i>None</i> | Employee
+    +check_form() → <i>bool</i>
+    +set_first_interview() → <i>None</i>
+    +first_interview() → <i>bool</i>
+    +set_tech_interview() → <i>None</i>
+    +tech_interview() → <i>bool</i>
+}
+class Form {
+    {static} +questions: <i>list</i>[<i>str</i>]
+    +answers: <i>list</i>[<i>str</i>]
+}
+hide Form empty members
+
+HRDepartment o-- Employee
+HRDepartment *-- Candidate
+Candidate *-- Form
+
+HRDepartment::hire ..> Candidate
+Candidate::set_first_interview .left.> Employee
+Candidate::set_tech_interview .left.> Employee
+
+@enduml
