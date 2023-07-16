@@ -1,0 +1,73 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!theme monokai from ..\.styles
+
+left to right direction
+
+class Character {
+    +health: <i>int</i>
+    +stamina: <i>int</i>
+    +energy: <i>int</i>
+'    +strength: <i>int</i>
+'    +dexterity: <i>int</i>
+'    +resilience: <i>int</i>
+'    +intellect: <i>int</i>
+'    +mental: <i>int</i>
+'    +charisma: <i>int</i>
+    +main_attributes: <i>dict</i>[<i>str</i>, <i>int</i>]
+    +secondary_attributes: <i>dict</i>[<i>str</i>, <i>int</i>]
+    +skills
+    __init__()
+}
+
+class Hero {
+    +level: <i>int</i>
+    __init__()
+    +level_up()
+}
+class NPC {
+    __init__()
+}
+class Mob {
+    __init__()
+    -scale()
+}
+
+class Fighter {
+    +fury:  <i>int</i>
+    {field} ...
+    {method} ...
+}
+class Wizard {
+    +concentration: <i>float</i>
+    {field} ...
+    {method} ...
+}
+class Thief {
+    +merging: <i>float</i>
+    {field} ...
+    {method} ...
+}
+class Cleric {
+    +blessings: <i>int</i>
+    {field} ...
+    {method} ...
+}
+
+class Aggresive
+class NotAggresive
+
+Character <|-- Hero
+Character <|-- NPC
+Character <|-- Mob
+
+Hero <|-- Fighter
+Hero <|-- Wizard
+Hero <|-- Thief
+Hero <|-- Cleric
+
+Mob <|-- Aggresive
+Mob <|-- NotAggresive
+
+@enduml
