@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!theme monokai from ..\.styles
+
+hide class empty members
+
+class Proteus {
+    +move()
+    +eat()
+    +reproduce()
+}
+class Fish {
+    +breath()
+}
+class Reptiles {
+    +hide()
+}
+class Bird {
+    +fly()
+}
+class Mammals {
+    +care()
+}
+class Human {
+    +speak()
+}
+
+Proteus <|-- Fish
+Fish <|-- Reptiles
+Reptiles <|-- Bird
+Reptiles <|-- Mammals
+Mammals <|-- Human
+
+@enduml
