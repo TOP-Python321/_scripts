@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!theme monokai from ..\.styles
+
+class Renderer {
+    +data: <i>bytes</i>
+    {field} ...
+    +render() → <i>bytes</i>
+    {method} ...
+}
+class RasterRenderer {
+    {field} ...
+    -pixelize() → <i>bytes</i>
+    +render() → <i>bytes</i>
+}
+class VectorRenderer {
+    {field} ...
+    -analyze() → <i>bytes</i>
+    {static} -scale() → <i>bytes</i>
+    +render() → <i>bytes</i>
+}
+
+Renderer <|-- RasterRenderer
+Renderer <|-- VectorRenderer
+
+@enduml
