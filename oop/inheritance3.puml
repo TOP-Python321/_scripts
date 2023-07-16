@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!theme monokai from ..\.styles
+
+class Vehicle {
+    {static} +wheel
+    +speed
+    __init__()
+    +move()
+}
+class Bicycle {
+    {static} +wheel
+}
+class Car
+class Train {
+    {static} +wheel
+    +move()
+}
+class Airplane {
+    {static} +wheel
+    +speed_ground
+    __init__()
+    +move()
+    +fly()
+}
+
+Vehicle <|-- Bicycle
+Vehicle <|-- Car
+Vehicle <|-- Train
+Vehicle <|-- Airplane : "неэффективное наследование"
+
+@enduml
