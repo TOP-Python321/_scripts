@@ -63,7 +63,7 @@ yara = Cat('Яра', 'пятнистая', 4.5)
 
 # примерное представление встроенного метода __call__()
 # def __call__(cls, *args, **kwargs):
-    # instance = super().__call__(cls)
+    # instance = super().__new__(cls, *args, **kwargs)
     # instance.__init__(*args, **kwargs)
     # return instance
 
