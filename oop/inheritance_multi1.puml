@@ -1,0 +1,20 @@
+@startuml
+
+!theme monokai from ..\.styles
+
+hide class empty fields
+
+class A
+class B
+class C
+class D
+class F
+class G
+
+A <|-- C
+A <|-- D
+B <|-- C
+D <|-- F
+G <|-- F
+
+@enduml
