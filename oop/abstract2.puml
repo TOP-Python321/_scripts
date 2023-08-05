@@ -1,0 +1,46 @@
+@startuml
+
+!theme monokai from ..\.styles
+
+class Player {
+    +instrument: MusicalInstrument
+    +play()
+}
+
+abstract MusicalInstrument {
+    +{abstract}play()
+}
+
+abstract Acoustic {
+    +range: <i>tuple</i>[<i>str</i>, <i>str</i>]
+}
+abstract Synthetic {
+    +{abstract}modulate()
+}
+
+abstract Keyboard {
+    +mechanics: <i>str</i>
+}
+abstract String {
+    +strings: <i>tuple</i>
+}
+
+class Piano {
+    #samples_dir_path: <i>Path</i>
+}
+class Viola
+class Guitar
+
+MusicalInstrument <|-- Acoustic
+MusicalInstrument <|-- Synthetic
+
+Acoustic <|-- Keyboard
+Acoustic <|-- String
+
+Keyboard <|-- Piano
+String <|-- Viola
+String <|-- Guitar
+
+Player o-right- MusicalInstrument
+
+@enduml
