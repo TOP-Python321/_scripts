@@ -1,0 +1,32 @@
+@startuml
+
+!theme monokai from ..\.styles
+
+hide class empty members
+
+abstract TextParser {
+    +{abstract}{static}bold_pat: <i>Pattern</i>
+    +{abstract}{static}italic_pat: <i>Pattern</i>
+    +{abstract}{static}underline_pat: <i>Pattern</i>
+
+    +find_all_bold()
+    +find_all_italic()
+    +find_all_underline()
+}
+
+class HTML {
+'    bold_pat: <i>Pattern</i>
+'    italic_pat: <i>Pattern</i>
+'    underline_pat: <i>Pattern</i>
+}
+
+class Markdown {
+'    bold_pat: <i>Pattern</i>
+'    italic_pat: <i>Pattern</i>
+'    underline_pat: <i>Pattern</i>
+}
+
+TextParser <|-- HTML
+TextParser <|-- Markdown
+
+@enduml
