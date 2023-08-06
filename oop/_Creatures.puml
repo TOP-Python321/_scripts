@@ -1,0 +1,29 @@
+@startuml
+
+!theme monokai from ..\.styles
+
+abstract BaseCreature {
+    +health: <i>int</i>
+    __init__()
+    +{abstract}die()
+}
+
+abstract list
+hide list empty members
+
+class Enemy {
+    __init__()
+    #generate_drop()
+    +die()
+}
+
+class Trader {
+    +die()
+}
+
+BaseCreature <|-- Enemy
+list <|-- Enemy
+
+BaseCreature <|-- Trader
+
+@enduml
