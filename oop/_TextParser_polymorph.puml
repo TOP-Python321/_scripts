@@ -1,0 +1,33 @@
+@startuml
+
+!theme monokai from ..\.styles
+
+hide class empty members
+
+'abstract TextParser {
+'    +{abstract}{static}bold_pat: <i>Pattern</i>
+'    +{abstract}{static}italic_pat: <i>Pattern</i>
+'    +{abstract}{static}underline_pat: <i>Pattern</i>
+'
+'    +find_all_bold()
+'    +find_all_italic()
+'    +find_all_underline()
+'}
+
+class HTML {
+    +{static}bold_pat: <i>Pattern</i>
+    +{static}italic_pat: <i>Pattern</i>
+    +{static}underline_pat: <i>Pattern</i>
+    +extract_emphasis() → <i>list</i>[<i>str</i>]
+}
+
+class Markdown {
+    +{static}bold_pat: <i>Pattern</i>
+    +{static}italic_pat: <i>Pattern</i>
+    +extract_emphasis() → <i>list</i>[<i>str</i>]
+}
+
+'TextParser <|-- HTML
+'TextParser <|-- Markdown
+
+@enduml

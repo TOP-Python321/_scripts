@@ -14,3 +14,25 @@
   <td>Love<strong>is</strong>bold</td>
 </tr>
 </tbody>
+
+<tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Italicized text is the *cat's meow*.</code></td>
+      <td><code class="highlighter-rouge">Italicized text is the &lt;em&gt;cat's meow&lt;/em&gt;.</code></td>
+      <td>Italicized text is the <em>cat’s meow</em>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Italicized text is the _cat's meow_.</code></td>
+      <td><code class="highlighter-rouge">Italicized text is the &lt;em&gt;cat's meow&lt;/em&gt;.</code></td>
+      <td>Italicized text is the <em>cat’s meow</em>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">A*cat*meow</code></td>
+      <td><code class="highlighter-rouge">A&lt;em&gt;cat&lt;/em&gt;meow</code></td>
+      <td>A<em>cat</em>meow</td>
+    </tr>
+  </tbody>
+
+<body>
+    <p>This is some <u>mispeled</u> text.</p>
+</body>
