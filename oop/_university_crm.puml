@@ -36,10 +36,13 @@ abstract Personnel {
     +position: <i>str</i>
     +degree: Degree | <i>None</i>
     +titles: <i>list</i>[<i>str</i>]
-    +exp: <i>dec</i>
+    -exp: <i>dec</i>
+    ..<i> getters </i>..
+    +exp
+'    ..<i> methods </i>..
 }
 class Teacher {
-
+    +courses: <i>list</i>[<i>str</i>]
 }
 class Administrator {
 
@@ -56,8 +59,9 @@ Personnel <|-- Teacher
 Personnel <|-- Administrator
 
 Person *- Sex
-Person *- Contact
+Person *-left- Contact
 
 Personnel *- Degree
+
 
 @enduml
