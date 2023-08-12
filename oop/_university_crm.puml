@@ -23,8 +23,20 @@ enum Degree {
 hide Degree empty methods
 
 abstract Person {
+    +last_name: <i>str</i>
+    +first_name: <i>str</i>
+    +patr_name: <i>str</i>
+    +sex: Sex
+    +birthdate: <i>date</i>
+    +contacts: Contact
 }
 abstract Personnel {
+    +id: <i>int</i>
+    +salary: <i>dec</i>
+    +position: <i>str</i>
+    +degree: Degree | <i>None</i>
+    +titles: <i>list</i>[<i>str</i>]
+    +exp: <i>dec</i>
 }
 class Teacher {
 
@@ -33,7 +45,8 @@ class Administrator {
 
 }
 class Student {
-
+    +student_id: <i>str</i>
+    +grant: <i>dec</i>
 }
 
 
