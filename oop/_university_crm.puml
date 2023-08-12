@@ -7,24 +7,33 @@ abstract list
 hide list empty members
 
 abstract Organization {
-
+    +title: <i>str</i>
+    +head: Administrator
+    +contacts: Contact
+    +hire() → Personnel
+    +fire() → Personnel
 }
 
 class University {
-
+    +institutes: <i>list</i>[Institute]
 }
 class Institute {
-
+    +departments: <i>list</i>[Department]
+    +labs: <i>list</i>[Laboratory]
 }
 class Department {
-
+    +groups: <i>list</i>[Group]
 }
 class Laboratory {
-
+    +equipment: <i>list</i>[<i>str</i>]
+    +schedule: <i>list</i>[<i>dict</i>[<i>datetime</i>, <i>timedelta</i>]]
 }
 
 class Group {
-
+    +semester: <i>int</i>
+    +curator: Teacher
+    +head: Student
+    +promote()
 }
 
 
