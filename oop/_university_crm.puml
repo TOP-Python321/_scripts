@@ -1,10 +1,10 @@
 @startuml
 
-!theme monokai from ..\.styles
+'!theme monokai from ..\.styles
 
 
-abstract list1
-abstract list2
+abstract "list" as list1
+abstract "list" as list2
 hide list1 empty members
 hide list2 empty members
 
