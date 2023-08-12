@@ -1,0 +1,50 @@
+@startuml
+
+!theme monokai from ..\.styles
+
+
+class Contact {
+    +mobile: <i>str</i>
+    +office: <i>str</i> | <i>None</i>
+    +email: <i>str</i> | <i>None</i>
+}
+hide Contact empty methods
+
+enum Sex {
+    MALE
+    FEMALE
+}
+hide Sex empty methods
+
+enum Degree {
+    CANDIDATE
+    DOCTOR
+}
+hide Degree empty methods
+
+abstract Person {
+}
+abstract Personnel {
+}
+class Teacher {
+
+}
+class Administrator {
+
+}
+class Student {
+
+}
+
+
+Person <|-- Student
+Person <|-- Personnel
+Personnel <|-- Teacher
+Personnel <|-- Administrator
+
+Person *- Sex
+Person *- Contact
+
+Personnel *- Degree
+
+@enduml
