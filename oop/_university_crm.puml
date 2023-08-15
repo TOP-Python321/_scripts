@@ -72,6 +72,7 @@ abstract Personnel {
     +position: <i>str</i>
     +degree: Degree | <i>None</i>
     +titles: <i>list</i>[<i>str</i>]
+    +job_start: <i>date</i>
     -exp: <i>dec</i>
     ..<i> getters </i>..
     +exp
