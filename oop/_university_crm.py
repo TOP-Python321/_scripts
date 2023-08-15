@@ -3,13 +3,14 @@ from dataclasses import dataclass
 from datetime import date, datetime as dt
 from decimal import Decimal as dec
 from enum import Enum
+from typing import Literal
 
 
 @dataclass
 class Contact:
-    mobile: str | None
-    office: str | None
-    email: str | None
+    mobile: str = None
+    office: str = None
+    email: str = None
 
 
 class Person(ABC):
@@ -32,6 +33,7 @@ class Person(ABC):
         self.last_name = last_name
         self.first_name = first_name
         self.patr_name = patr_name
+        self.__fio: str = f'{self.last_name} {self.first_name} {self.patr_name}'
         self.sex = sex
         if isinstance(birthdate, tuple):
             try:
@@ -46,6 +48,18 @@ class Person(ABC):
             birthdate = dt.strptime(birthdate, self._default_date_format)
         self.birthdate: date = birthdate
         self.contacts = contacts
+
+    @property
+    def fio(self):
+        return self.__fio
+
+    def change_name(
+            self,
+            new_name: str,
+            name_part: Literal['last', 'first', 'patr']
+    ):
+        setattr(self, f'{name_part}_name', new_name)
+        self.__fio = f'{self.last_name} {self.first_name} {self.patr_name}'
 
 
 class Personnel(Person):
