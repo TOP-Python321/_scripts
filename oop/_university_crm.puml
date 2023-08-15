@@ -1,6 +1,6 @@
 @startuml
 
-'!theme monokai from ..\.styles
+!theme monokai from ..\.styles
 
 
 abstract "list" as list1
@@ -40,7 +40,7 @@ class Group {
 
 
 class Contact {
-    +mobile: <i>str</i>
+    +mobile: <i>str</i> | <i>None</i>
     +office: <i>str</i> | <i>None</i>
     +email: <i>str</i> | <i>None</i>
 }
