@@ -89,3 +89,39 @@ class Personnel(Person):
     def exp(self) -> dec:
         return self._exp + dec((date.today() - self.job_start).days / 365.25)
 
+
+class Administrator(Personnel):
+    pass
+
+
+class Teacher(Personnel):
+    def __init__(
+            self,
+            last_name: str,
+            first_name: str,
+            patr_name: str,
+            sex: Person.Sex,
+            birthdate: date | str | tuple[str, str],
+            contacts: Contact,
+            id_: int,
+            salary: dec,
+            courses: list[str],
+            degree: Personnel.Degree | None = None,
+            titles: list[str] = None,
+            previous_experience: dec = dec(0)
+    ):
+        super().__init__(
+            last_name,
+            first_name,
+            patr_name,
+            sex,
+            birthdate,
+            contacts,
+            id_,
+            salary,
+            degree,
+            titles,
+            previous_experience
+        )
+        self.courses = courses
+
