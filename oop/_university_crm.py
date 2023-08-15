@@ -125,3 +125,27 @@ class Teacher(Personnel):
         )
         self.courses = courses
 
+
+class Student(Person):
+    def __init__(
+            self,
+            last_name: str,
+            first_name: str,
+            patr_name: str,
+            sex: Person.Sex,
+            birthdate: date | str | tuple[str, str],
+            contacts: Contact,
+            student_id: str,
+            grant: dec = dec(0),
+    ):
+        super().__init__(
+            last_name,
+            first_name,
+            patr_name,
+            sex,
+            birthdate,
+            contacts
+        )
+        self.student_id = student_id
+        self.grant = grant
+
