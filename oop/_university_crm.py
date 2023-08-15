@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from datetime import date, datetime as dt
 from decimal import Decimal as dec
@@ -61,6 +61,10 @@ class Person(ABC):
         setattr(self, f'{name_part}_name', new_name)
         self.__fio = f'{self.last_name} {self.first_name} {self.patr_name}'
 
+    @abstractmethod
+    def __str__(self):
+        pass
+
 
 class Personnel(Person):
 
@@ -105,7 +109,8 @@ class Personnel(Person):
 
 
 class Administrator(Personnel):
-    pass
+    def __str__(self):
+        return f'<Administrator: {self.fio}>'
 
 
 class Teacher(Personnel):
@@ -139,6 +144,9 @@ class Teacher(Personnel):
         )
         self.courses = courses
 
+    def __str__(self):
+        return f'<Teacher: {self.fio}>'
+
 
 class Student(Person):
     def __init__(
@@ -162,4 +170,7 @@ class Student(Person):
         )
         self.student_id = student_id
         self.grant = grant
+
+    def __str__(self):
+        return f'<Student: {self.fio}>'
 
