@@ -1,0 +1,46 @@
+@startuml
+
+!theme monokai from ..\..\.styles
+
+abstract Person {
+    +name: <i>str</i>
+    +birthdate: <i>date</i>
+    ..<font size=12><i> getters </i></font>..
+    +age → <i>int</i>
+    +birthdate: <i>date</i>
+    ..<font size=12><i> methods </i></font>..
+    __str__()
+}
+class Employee {
+    +position: <i>str</i>
+    +income: <i>dec</i>
+    __str__()
+}
+class Candidate {
+    +cv: <i>bytes</i>
+    +expert1: <i>bool</i>
+    +expert2: <i>bool</i>
+    +final: <i>bool</i>
+    __str__()
+    +tech_meeting1() → <i>None</i>
+    +tech_meeting2() → <i>None</i>
+    +final_meeting() → <i>None</i>
+}
+
+class Factory {
+    +age_min: <i>int</i> = 18
+    +age_max: <i>int</i> = 58
+    +{static}create_candidate() → Candidate
+    +hire_candidate() → Employee | Candidate
+}
+
+Person <|-- Employee
+Person <|-- Candidate
+
+Factory -up[hidden]- Employee
+
+Factory::create_candidate .> Candidate
+Factory::hire_candidate .> Employee
+Factory::hire_candidate .> Candidate
+
+@enduml
