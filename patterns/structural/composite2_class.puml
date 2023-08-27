@@ -1,0 +1,23 @@
+@startuml
+
+!theme monokai from ..\..\.styles
+
+class Neuron {
+    +name: <i>str</i>
+    +inputs: <i>list</i>[Neuron]
+    +outputs: <i>list</i>[Neuron]
+    __iter__()
+    +connect_to()
+    +show_connections()
+}
+abstract list
+hide list empty members
+class NeuronLayer {
+    +name: <i>str</i>
+    +connect_to()
+}
+
+list <|-- NeuronLayer
+NeuronLayer o-left- Neuron
+
+@enduml
