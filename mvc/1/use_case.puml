@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+'skinparam linetype ortho
+skinparam roundcorner 20
+
+'тёмная тема
+!theme monokai from ..\..\.styles
+actor User
+rectangle " Controller " as app1 #darkolivegreen
+rectangle " Controller " as app2 #darkolivegreen
+rectangle " Controller " as app3 #darkolivegreen
+rectangle " View " as v1 #darkslategray
+rectangle " View " as v2 #darkslategray
+rectangle " View " as v3 #darkslategray
+rectangle " Model " as mod #darkred
+usecase " start_view() " as sv #darkslategray
+usecase " get_command_view() " as gc #darkslategray
+usecase " show_people() " as sp #darkslategray
+usecase " get_all_people() " as gap #darkolivegreen
+
+'светлая тема
+'actor User
+'rectangle " Controller " as app1 #palegoldenrod
+'rectangle " Controller " as app2 #palegoldenrod
+'rectangle " Controller " as app3 #palegoldenrod
+'rectangle " View " as v1 #lightgray
+'rectangle " View " as v2 #lightgray
+'rectangle " View " as v3 #lightgray
+'rectangle " Model " as mod #sandybrown
+'usecase " start_view() " as sv #lightgray
+'usecase " get_command_view() " as gc #lightgray
+'usecase " show_people() " as sp #lightgray
+'usecase " get_all_people() " as gap #palegoldenrod
+
+
+left to right direction
+User --> app1 : open
+app1 -> v1 : "            start()"
+v1 --> sv
+v1 -right[hidden]- app2
+sv -left-> app2
+app2 -> v2 : "get_command()\t\t "
+v2 -up-> gc
+User -right-> gc : all
+gc -> app3
+v2 -right[hidden]- app3
+app3 -> gap
+gap --> mod
+mod --> gap
+gap -> v3
+v3 -up-> sp
+
+@enduml
