@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+!theme monokai from ..\..\.styles
+
+start
+:controller.start();
+:view.start_view();
+:controller.get_command();
+  repeat
+    :view.get_command_view();
+    switch ( command )
+      case ( 'all' )
+        :controller.get_all_people();
+        :model.storage;
+        :view.show_people();
+      case ( 'langs'          )
+        :controller.get_people_by_lang();
+        :model.storage;
+        :view.show_people();
+      case ( 'quit'     )
+        break
+    endswitch
+  repeat while
+:controller.end();
+:view.end_view();
+stop
+
+@enduml
