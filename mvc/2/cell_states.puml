@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+!theme monokai from ..\..\.styles
+
+'skinparam linetype ortho
+
+hide empty description
+
+state " OPENED " as op
+state " CLOSED " as cl
+state " FLAGGED " as fl
+state " QUESTIONED " as qu
+
+'note "Game.on_left_click()" as n1
+'note "Game.on_right_click()" as n2
+
+[*] --> cl
+op <-- cl : Game.on_left_click()
+cl -right-> fl  : Game.on_right_click()
+fl --> qu
+qu --> cl
+
+@enduml
