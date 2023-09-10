@@ -1,0 +1,88 @@
+@startuml
+
+!theme monokai from ..\..\.styles
+
+allowmixing
+
+frame "  Model   " as mod {
+    enum States {
+        OPENED
+        CLOSED
+        FLAGGED
+        QUESTIONED
+        +{static}cycling() → <i>list</i>[States]
+    }
+    class Cell {
+        +row: <i>int</i>
+        +column: <i>int</i>
+        +state: States = CLOSED
+        +mined: bool = <i>False</i>
+        +counter: <i>int</i> = 0
+        #{static}cycling_states: <i>list</i>[States]
+        +next_state() → <i>None</i>
+        +open() → <i>None</i>
+    }
+    class Matrix {
+        +rows: <i>int</i>
+        +columns: <i>int</i>
+        +mines: <i>int</i>
+        +matrix: <i>list</i>[<i>list</i>[Cell]]
+        +create_matrix() → <i>None</i>
+        +game_over: <i>bool</i> = <i>False</i>
+        +first_step: <i>bool</i> = <i>True</i>
+        -generate_mines() → <i>None</i>
+        +is_win() → <i>bool</i>
+        +is_game_over() → <i>bool</i>
+        +cell_cycle_state() → <i>None</i>
+        +get_cell() → Cell | <i>None</i>
+        -get_cell_neighbours() → <i>list</i>[Cell]
+        -get_mines_around_cell() → <i>int</i>
+        +open_cell() → <i>None</i>
+    }
+}
+frame "  Controller   " as ctrl {
+    class Game {
+        +model: Matrix
+        +view: GUI
+        +set_view() → <i>None</i>
+        +restart_game() → <i>None</i>
+        +on_left_click() → <i>None</i>
+        +on_right_click() → <i>None</i>
+    }
+}
+abstract "tkinter.Frame" as tk_frame
+hide tk_frame empty members
+frame "  View   " as view {
+    class GUI {
+        +model: Matrix
+        +controller: Game
+        +rows: <i>tkinter.StringVar</i>
+        +columns: <i>tkinter.StringVar</i>
+        +mines: <i>tkinter.StringVar</i>
+        +board: <i>tkinter.Frame</i>
+        +buttons: <i>list[list[tkinter.Button]]</i>
+        +create_board() → <i>None</i>
+        +create_panel() → <i>None</i>
+        +game_settings() → <i>tuple</i>[<i>int</i>, <i>int</i>, <i>int</i>]
+        +{static}show_win_message() → <i>None</i>
+        +{static}show_game_over_message() → <i>None</i>
+        +sync_model() → <i>None</i>
+        +block_button() → <i>None</i>
+    }
+}
+
+Cell o-right- States
+Matrix ..> States
+
+Matrix o-- Cell
+Matrix ..> Cell
+
+Game o-- Matrix
+Game o-up-o GUI
+
+tk_frame <|-- GUI
+
+GUI o-left- Matrix
+'GUI o-- Game
+
+@enduml
