@@ -42,7 +42,7 @@ v1 -right[hidden]- app2
 sv -left-> app2
 app2 -> v2 : "get_command()\t\t "
 v2 -up-> gc
-User -right-> gc : all
+User -right-> gc : "'all'\t "
 gc -> app3
 v2 -right[hidden]- app3
 app3 -> gap
