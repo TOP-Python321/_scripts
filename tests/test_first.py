@@ -1,5 +1,6 @@
 from datetime import datetime as dt
 from locale import setlocale, LC_ALL
+from pytest import mark
 
 
 setlocale(LC_ALL, 'ru_RU')
@@ -25,5 +26,15 @@ def test_third():
 
 def test_fourth():
     assert f'{dt.now():%B}' == 'September'
+
+
+@mark.xfail
+def test_fifth():
+    assert False
+
+
+@mark.xfail
+def test_sixth():
+    assert True
 
 
