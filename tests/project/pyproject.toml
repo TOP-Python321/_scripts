@@ -2,8 +2,10 @@
 
 [paths]
 history = "data/history.log"
+# для крупных проектов с разветвлённой инфраструктурой тестов используют отдельный конфигурационный файл, который подгружается вместо основного во время тестирования; а в более простых случаях, как здесь, можно использовать один конфиг-файл
+history_test = "data/tests/history.log"
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
-testpaths = ["tests"]
+testpaths = ["tests/auto"]
 disable_test_id_escaping_and_forfeit_all_rights_to_community_support = true

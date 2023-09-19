@@ -4,11 +4,10 @@ scale 2
 
 class FileIO {
     +{static}default_path: Path
-    +history: Path
-    +read_last() → str
+    +history_log: Path
+    +write_operation() → None
+    +read_operation() → str
     +read_all() → str
-    +write_last() → None
-    +write_all() → None
 }
 
 abstract list
