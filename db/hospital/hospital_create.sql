@@ -42,16 +42,16 @@ create table doctors (
     check (premium >= 0)
 );
 
-create table doctors_specializations (
-    doctors_id smallint unsigned not null,
+create table specializations_doctors (
     specializations_id tinyint unsigned not null,
+    doctors_id smallint unsigned not null,
     primary key (doctors_id, specializations_id)
 );
 
 create table vacations (
     id mediumint unsigned primary key auto_increment,
-    start_date date null,
-    end_date date null,
+    start_date date not null,
+    end_date date not null,
     doctors_id smallint unsigned not null,
     check (end_date > start_date)
 );
@@ -74,13 +74,21 @@ create table donations (
     -- check (date <= curdate())
 );
 
+
 delimiter //
 create trigger donations_check_date
-before insert
-on donations for each row
+before insert on donations for each row
 begin
     if new.date > curdate() then
-        set new.date = curdate();
+        -- подмена данных на значение по умолчанию для столбца (или иное значение) не всегда допустима
+        -- set new.date = curdate();
+        
+        -- подмена данных на запрещённое для столбца значение прерывает запрос, но вводит в заблуждение
+        -- set new.date = null;
+        
+        -- предпочтительный способ отмены запроса добавления данных
+        signal sqlstate '45001'
+            set message_text = 'Column \'date\' cannot contain a date that is later than current date';
     end if;
 end //
 delimiter ;
@@ -89,7 +97,7 @@ delimiter ;
 alter table wards
     add foreign key (departments_id) references departments (id);
 
-alter table doctors_specializations
+alter table specializations_doctors
     add foreign key (doctors_id) references doctors (id),
     add foreign key (specializations_id) references specializations (id);
 
