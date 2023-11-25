@@ -15,8 +15,7 @@ def countable_nouns(number: int, nouns: tuple[str, str, str]) -> str:
         | dict.fromkeys((5, 6, 7, 8, 9, 0, 11, 12, 13, 14), nouns[2])
     )
     last_digit, two_last_digits = number % 10, number % 100
-    q = digits_nouns.get(two_last_digits)
-    return q if q is not None else digits_nouns[last_digit]
+    return digits_nouns.get(two_last_digits) or digits_nouns[last_digit]
 
 
 @dataclass
