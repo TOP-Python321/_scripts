@@ -16,6 +16,8 @@ Including another URLconf
 """
 
 # from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 
 from catalog import views
@@ -36,5 +38,7 @@ urlpatterns = [
     
     path('test', views.test),
     path('test_sub', views.test_sub),
-]
+] 
+
+urlpatterns += static(settings.STATIC_URL)
 
