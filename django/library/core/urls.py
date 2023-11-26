@@ -34,5 +34,7 @@ urlpatterns = [
     # http://127.0.0.1:8000/publishers/azbuka
     path('publishers/<str:publisher>', views.publisher),
     
+    path('test', views.test),
+    path('test_sub', views.test_sub),
 ]
 

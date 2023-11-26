@@ -1,0 +1,19 @@
+{% extends 'catalog/base.html' %}
+
+
+{% block body_content %}
+  
+  {% block test_block1 %}
+  {% endblock test_block1 %}
+  
+  {% block test_block2 %}
+  {% endblock test_block2 %}
+  
+{% endblock body_content %}
+
+
+<!-- в дочернем шаблоне содержимое вне блоков будет проигнорировано -->
+<h3>внеблоковое содержимое</h3>
+
+{% block test_block3 %}
+{% endblock test_block3 %}

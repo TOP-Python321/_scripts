@@ -1,32 +1,30 @@
-<html>
-  <head>
-    <title>Каталог</title>
-  </head>
-  <body>
+{% extends 'catalog/base.html' %}
+
+
+{% block body_content %}
+  <div>
+    <h2>Каталог книг</h2>
     <div>
-      <h2>Каталог книг</h2>
-      <div>
-        <table cellpadding={{ padding|default:5 }}>
-          {% for book in books %}
-            <tr>
-              <td>{{ book }}</td>
-            </tr>
-          {% endfor %}
-        </table>
-      </div>
+      <table cellpadding={{ padding|default:5 }}>
+        {% for book in books %}
+          <tr>
+            <td>{{ book }}</td>
+          </tr>
+        {% endfor %}
+      </table>
     </div>
-    <hr>
+  </div>
+  <hr>
+  <div>
+    <h3>Издатели</h3>
     <div>
-      <h3>Издатели</h3>
-      <div>
-        <table cellpadding=5>
-          {% for publisher in publishers %}
-            <tr>
-              <td><a href="publishers/{{ publisher.url }}">{{ publisher }}</a></td>
-            </tr>
-          {% endfor %}
-        </table>
-      </div>
+      <table cellpadding=5>
+        {% for publisher in publishers %}
+          <tr>
+            <td><a href="publishers/{{ publisher.url }}">{{ publisher }}</a></td>
+          </tr>
+        {% endfor %}
+      </table>
     </div>
-  </body>
-</html>
+  </div>
+{% endblock body_content %}

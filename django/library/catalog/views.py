@@ -26,6 +26,7 @@ def hello(request) -> HttpResponse:
 def catalog(request) -> HttpResponse:
     template = get_template('catalog/index.html')
     context = {
+        'title': 'Каталог',
         'books': models.Book.objects.all(),
         'padding': 20,
         'publishers': publishers_cache.values(),
@@ -38,8 +39,22 @@ def publisher(request, publisher: str) -> HttpResponse:
         request,
         'catalog/publisher.html',
         {
-            'publisher': publishers_cache[publisher],
+            'title': publishers_cache[publisher].name,
             'publisher_books': publishers_cache[publisher].books.all(),
         }
+    )
+
+
+def test(request):
+    return render(
+        request,
+        'catalog/test.html',
+    )
+
+
+def test_sub(request):
+    return render(
+        request,
+        'catalog/test_sub.html',
     )
 
