@@ -29,5 +29,10 @@ urlpatterns = [
     
     # http://127.0.0.1:8000/catalog
     path('catalog', views.catalog),
+    
+    # http://127.0.0.1:8000/publishers/ast
+    # http://127.0.0.1:8000/publishers/azbuka
+    path('publishers/<str:publisher>', views.publisher),
+    
 ]
 

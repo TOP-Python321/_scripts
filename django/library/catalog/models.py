@@ -1,4 +1,7 @@
 from django.db import models
+from transliterate import translit
+
+from functools import cached_property
 
 
 class Author(models.Model):
@@ -43,7 +46,7 @@ class Book(models.Model):
     )
     
     def __repr__(self):
-        return self.title
+        return f'"{self.title}"'
     
     def __str__(self):
         return f'{self.author.last_name}. {self.title}'
@@ -69,7 +72,18 @@ class Publisher(models.Model):
         to='Book'
     )
     
+    @cached_property
+    def name_translit(self) -> str:
+        return translit(self.name, 'ru', reversed=True)
+    
+    @cached_property
+    def url(self) -> str:
+        return self.name_translit.lower().replace(' ', '-')
+    
     def __repr__(self):
+        return self.name
+    
+    def __str__(self):
         return self.name
 
 

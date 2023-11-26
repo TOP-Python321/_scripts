@@ -3,16 +3,30 @@
     <title>Каталог</title>
   </head>
   <body>
-    <h2>Каталог</h2>
+    <div>
+      <h2>Каталог книг</h2>
+      <div>
+        <table cellpadding={{ padding|default:5 }}>
+          {% for book in books %}
+            <tr>
+              <td>{{ book }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
     <hr>
     <div>
-      <table cellpadding={{ padding|default:10 }}>
-        {% for book in books %}
-          <tr>
-            <td>{{ book }}</td>
-          </tr>
-        {% endfor %}
-      </table>
+      <h3>Издатели</h3>
+      <div>
+        <table cellpadding=5>
+          {% for publisher in publishers %}
+            <tr>
+              <td><a href="publishers/{{ publisher.url }}">{{ publisher }}</a></td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
     </div>
   </body>
 </html>

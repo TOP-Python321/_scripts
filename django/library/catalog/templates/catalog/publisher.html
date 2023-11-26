@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>{{ publisher.name }}</title>
+  </head>
+  <body>
+    <h2>Издательство "{{ publisher.name }}"</h2>
+    <h4>Книги</h4>
+    <div>
+      <table cellpadding=10>
+        {% for book in publisher_books %}
+          <tr>
+            <td>{{ book }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
