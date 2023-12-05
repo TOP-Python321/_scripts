@@ -18,6 +18,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from organization import views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    path('departments/', views.AllDepartments.as_view()),
 ]

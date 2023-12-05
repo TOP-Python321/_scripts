@@ -34,10 +34,14 @@ urlpatterns = [
     
     # http://127.0.0.1:8000/publishers/ast
     # http://127.0.0.1:8000/publishers/azbuka
-    path('publishers/<str:publisher>', views.publisher),
+    # path('publishers/<str:publisher>', views.publisher),
+    path('publishers/<slug>', views.Publisher.as_view()),
     
     path('test', views.test),
     path('test_sub', views.test_sub),
+    
+    # http://127.0.0.1:8000/publishers/add_book
+    path('add_book', views.add_book),
 ] 
 
 urlpatterns += static(settings.STATIC_URL)

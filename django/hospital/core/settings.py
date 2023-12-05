@@ -90,14 +90,18 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'org.sqlite3',
     },
+    # 'users': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'django_hospital_users',
+    #     'OPTIONS': {
+    #         'read_default_file': str(BASE_DIR / 'data/config/users.cnf'),
+    #         'autocommit': True,
+    #     },
+    # },
     'users': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_hospital_users',
-        'OPTIONS': {
-            'read_default_file': str(BASE_DIR / 'data/config/users.cnf'),
-            'autocommit': True,
-        },
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'users.sqlite3',
+    }
 }
 
 DATABASE_ROUTERS = [
