@@ -3,6 +3,13 @@
 
 {% block body_content %}
   <h2>Издательство "{{ title }}"</h2>
+  {% if is_publisher %}
+    <div>
+      <form action="/add_book" method="get">
+        <input type="submit" value="Добавить книгу">
+      </form>
+    </div>
+  {% endif %}
   <h4>Книги</h4>
   <div>
     <table cellpadding=10>

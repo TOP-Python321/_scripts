@@ -18,13 +18,23 @@ Including another URLconf
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.urls import path
 
 from catalog import views
 
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    # http://127.0.0.1:8000/admin/
+    # http://127.0.0.1:8000/admin/login
+    # http://127.0.0.1:8000/admin/password_change
+    path('admin', admin.site.urls), 
+    
+    # http://127.0.0.1:8000/login
+    path('login', LoginView.as_view()),
+    # http://127.0.0.1:8000/logout
+    path('logout', views.logout),
     
     # http://127.0.0.1:8000/
     path('', views.hello),

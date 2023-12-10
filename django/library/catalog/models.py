@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from transliterate import translit
 
@@ -66,10 +67,14 @@ class Publisher(models.Model):
         max_length=100
     )
     authors = models.ManyToManyField(
-        to='Author'
+        to='Author',
     )
     books = models.ManyToManyField(
-        to='Book'
+        to='Book',
+    )
+    user = models.OneToOneField(
+        to=get_user_model(),
+        on_delete=models.CASCADE,
     )
     
     @cached_property

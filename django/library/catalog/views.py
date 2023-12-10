@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth import logout as auth_logout
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 from django.template.loader import get_template
@@ -17,6 +18,7 @@ publishers_cache = {
 
 
 def hello(request) -> HttpResponse:
+    print(f'\nDEBUG:\n  {request.user.__class__.__name__}\n  {request.user.get_username()}\n')
     return render(
         request,
         'hello.html',
@@ -62,6 +64,8 @@ class Publisher(DetailView):
         return {
             'title': self.object.name,
             'publisher_books': self.object.books.all(),
+            # 'is_publisher': self.request.user.groups.filter(name__exact="publishers"),
+            'is_publisher': self.request.user.has_perm('catalog.add_book'),
         }
 
 
@@ -80,6 +84,13 @@ def test_sub(request):
 
 
 def add_book(request) -> HttpResponse:
+    # вместо django.contrib.auth.decorators.login_required()
+    if (
+             request.user.is_anonymous
+          or not request.user.has_perm('catalog.add_book')
+       ):
+        return HttpResponseRedirect('/login')
+    
     if request.method == 'GET':
         form = forms.AddBook(label_suffix=': ')
     
@@ -105,16 +116,17 @@ def add_book(request) -> HttpResponse:
                 author=author
             )
             book.save()
-            try:
-                publisher = models.Publisher.objects.get(
-                    name__exact=form.cleaned_data['publisher']
-                )
-            except ObjectDoesNotExist:
-                publisher = models.Publisher(
-                    name=form.cleaned_data['publisher']
-                )
-                publisher.save()
-            publisher.books.add(book)
+            # try:
+            #     publisher = models.Publisher.objects.get(
+            #         name__exact=form.cleaned_data['publisher']
+            #     )
+            # except ObjectDoesNotExist:
+            #     publisher = models.Publisher(
+            #         name=form.cleaned_data['publisher']
+            #     )
+            #     publisher.save()
+            # print(request.user.publisher)
+            request.user.publisher.books.add(book)
             form = forms.AddBook(label_suffix=': ')
     
     return render(
@@ -125,3 +137,8 @@ def add_book(request) -> HttpResponse:
             'form': form
         }
     )
+
+
+def logout(request):
+    auth_logout(request)
+    return HttpResponseRedirect('/')

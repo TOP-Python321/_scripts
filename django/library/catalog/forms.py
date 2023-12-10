@@ -28,8 +28,8 @@ class AddBook(forms.Form):
         max_length=100,
         help_text='Имя Фамилия',
     )
-    publisher = forms.CharField(
-        label='Издательство',
-        max_length=100,
-    )
+    # publisher = forms.CharField(
+    #     label='Издательство',
+    #     max_length=100,
+    # )
 
