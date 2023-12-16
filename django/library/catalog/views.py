@@ -35,6 +35,7 @@ def catalog(request) -> HttpResponse:
         'books': models.Book.objects.all(),
         'padding': 20,
         'publishers': publishers_cache.values(),
+        'user': request.user,
     }
     return HttpResponse(template.render(context))
 

@@ -1,0 +1,24 @@
+{% load django_bootstrap5 %}
+
+
+<nav class="navbar sticky-top bg-body-tertiary " style="background-color: #e3f2fd;">
+  <form class="container-fluid">
+    <div class="d-flex justify-content-start">
+      <!-- <div class="d-flex justify-content-evenly"> -->
+        {% bootstrap_button "Главная" href="/" button_type="link" button_class="btn-outline-dark" %}
+        {% bootstrap_button "Каталог" href="/catalog" button_type="link" button_class="btn-outline-dark" %}
+      <!-- </div> -->
+    </div>
+    <div class="d-flex justify-content-end">
+      {% if user.is_authenticated %}
+        <!-- <div class="d-flex justify-content-sm-evenly"> -->
+          {% bootstrap_label user.username label_class="navbar-text" %}
+          {% bootstrap_button "Выйти" href="/logout" button_type="link" button_class="btn-outline-info" %}
+        <!-- </div> -->
+      {% else %}
+        {% bootstrap_button "Войти" href="/login" button_type="link" button_class="btn-outline-secondary" %}
+      {% endif %}
+    </div>
+  </form>
+</nav>
+

@@ -1,4 +1,10 @@
-{% extends 'catalog/base.html' %}
+{% extends 'bootstrap5_base.html' %}
+{% load django_bootstrap5 %}
+
+
+{% block title %}
+  {{ title }}
+{% endblock title %}
 
 
 {% block body_content %}
@@ -6,7 +12,9 @@
   {% if is_publisher %}
     <div>
       <form action="/add_book" method="get">
-        <input type="submit" value="Добавить книгу">
+        <!-- <div class="d-grid gap-2 col-6 mx-auto"> -->
+          {% bootstrap_button "Добавить книгу" button_type="submit" button_class="btn-outline-primary btn-lg" %}
+        <!-- </div> -->
       </form>
     </div>
   {% endif %}
